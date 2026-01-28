@@ -89,33 +89,33 @@ plt.ylabel('Price')
 plt.legend()
 plt.show()
 
-last_100_days = final_df.tail(100)
-last_100_days_scaled = scaler.transform(last_100_days)
+# last_100_days = final_df.tail(100)
+# last_100_days_scaled = scaler.transform(last_100_days)
 
-x_future = []
-x_future.append(last_100_days_scaled[:, 0])
-x_future = np.array(x_future)
-x_future = np.reshape(x_future, (x_future.shape[0], x_future.shape[1], 1))
+# x_future = []
+# x_future.append(last_100_days_scaled[:, 0])
+# x_future = np.array(x_future)
+# x_future = np.reshape(x_future, (x_future.shape[0], x_future.shape[1], 1))
 
-future_predictions = []
+# future_predictions = []
 
-for i in range(7):
-    pred = model.predict(x_future, verbose=0)
-    future_predictions.append(pred[0, 0])
+# for i in range(7):
+#     pred = model.predict(x_future, verbose=0)
+#     future_predictions.append(pred[0, 0])
 
-    x_future = np.roll(x_future, -1, axis=1)
-    x_future[0, -1, 0] = pred
-future_predictions = np.array(future_predictions)
-future_predictions = future_predictions * (1 / scaler.scale_[0])
-plt.figure(figsize=(12,6))
-plt.plot(df['Close'].values, label='Historical Price')
-plt.plot(
-    range(len(df), len(df)+7),
-    future_predictions,
-    'r--',
-    label='Next 7 Days Prediction'
-)
-plt.xlabel('Time')
-plt.ylabel('Price')
-plt.legend()
-plt.show()
+#     x_future = np.roll(x_future, -1, axis=1)
+#     x_future[0, -1, 0] = pred
+# future_predictions = np.array(future_predictions)
+# future_predictions = future_predictions * (1 / scaler.scale_[0])
+# plt.figure(figsize=(12,6))
+# plt.plot(df['Close'].values, label='Historical Price')
+# plt.plot(
+#     range(len(df), len(df)+7),
+#     future_predictions,
+#     'r--',
+#     label='Next 7 Days Prediction'
+# )
+# plt.xlabel('Time')
+# plt.ylabel('Price')
+# plt.legend()
+# plt.show()
